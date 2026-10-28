@@ -4,7 +4,7 @@ pipeline {
   environment {
     // === 사용자 수정 영역 ===
     GIT_URL                = 'https://github.com/JJutron/myfirst-api-server.git'
-    GIT_BRANCH             = 'master'            // 또는 main
+    GIT_BRANCH             = 'main'            // 또는 main
     GIT_ID                 = 'skala-github-id'   // GitHub PAT credential ID git 로그인을 위한 토큰정보가 담겨져있는 식별 ID
     IMAGE_NAME             = 'sk071-webserver'
     // =======================
@@ -15,6 +15,8 @@ pipeline {
     DOCKER_CREDENTIAL_ID   = 'skala-image-registry-id'  // Harbor 인증 정보 ID
     K8S_NAMESPACE          = 'class-3'
     DEPLOYMENT_NAME        = 'sk071-myfirst-api-server'  // kustomize/base/deployment.yaml의 metadata.name과 동일해야 함
+
+    KUBECONFIG = '/var/jenkins_home/jenkins-kubeconfig'
   }
 
   options {
@@ -59,7 +61,7 @@ pipeline {
             echo "$REG_PASS" | docker login -u "$REG_USER" --password-stdin "$REG_HOST"
 
             # 2. 빌드 + 푸시 (buildx build --push는 별도 push 단계 없이 한 번에 수행)
-            docker buildx build --platform "linux/amd64" -t "${IMAGE_REF}" --push .
+            docker buildx build --platform "linux/arm64" -t "${IMAGE_REF}" --push .
 
             # 3. 정리
             docker rmi "${IMAGE_REF}" || true
