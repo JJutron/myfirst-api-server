@@ -15,6 +15,8 @@ pipeline {
     DOCKER_CREDENTIAL_ID   = 'skala-image-registry-id'  // Harbor 인증 정보 ID
     K8S_NAMESPACE          = 'class-3'
     DEPLOYMENT_NAME        = 'sk071-myfirst-api-server'  // kustomize/base/deployment.yaml의 metadata.name과 동일해야 함
+
+    KUBECONFIG = '/var/jenkins_home/jenkins-kubeconfig'
   }
 
   options {
