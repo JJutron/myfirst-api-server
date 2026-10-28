@@ -4,7 +4,7 @@ pipeline {
   environment {
     // === 사용자 수정 영역 ===
     GIT_URL                = 'https://github.com/JJutron/myfirst-api-server.git'
-    GIT_BRANCH             = 'master'            // 또는 main
+    GIT_BRANCH             = 'main'            // 또는 main
     GIT_ID                 = 'skala-github-id'   // GitHub PAT credential ID git 로그인을 위한 토큰정보가 담겨져있는 식별 ID
     IMAGE_NAME             = 'sk071-webserver'
     // =======================
