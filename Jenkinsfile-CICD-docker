@@ -59,7 +59,7 @@ pipeline {
             echo "$REG_PASS" | docker login -u "$REG_USER" --password-stdin "$REG_HOST"
 
             # 2. 빌드 + 푸시 (buildx build --push는 별도 push 단계 없이 한 번에 수행)
-            docker buildx build --platform "linux/amd64" -t "${IMAGE_REF}" --push .
+            docker buildx build --platform "linux/arm64" -t "${IMAGE_REF}" --push .
 
             # 3. 정리
             docker rmi "${IMAGE_REF}" || true
